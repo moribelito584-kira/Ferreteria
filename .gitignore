@@ -1,0 +1,7 @@
+# Ignore the specific Firebase key, no matter where it might pop up
+ferreteriabr-555f7-firebase-adminsdk-fbsvc-fb763add61.json
+
+# Also ignore common build/output directories
+/dist/
+/build/
+/_internal/ # If this is a specific directory you want to ignore
