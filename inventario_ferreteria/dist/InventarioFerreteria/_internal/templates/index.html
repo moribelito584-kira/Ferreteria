@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} {# Extiende la plantilla base #}
+
+{% block title %}Productos - Inventario Ferretería{% endblock %} {# Define el título de la página #}
+
+{% block content %} {# Define el contenido principal de la página #}
+    <h2>Lista de Productos</h2>
+    {% if productos %} {# Si hay productos para mostrar #}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Stock</th>
+                    <th>Unidad</th>
+                    <th>Precio Compra (S/)</th>
+                    <th>Precio Venta (S/)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %} {# Itera sobre cada producto #}
+                <tr>
+                    <td>{{ producto.id }}</td> {# ID generado por Firebase #}
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.codigo }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>{{ producto.unidad if producto.unidad else 'N/A' }}</td> {# Muestra N/A si no hay unidad #}
+                    {# Formato de moneda para precios #}
+                    <td>{{ 'S/ {:,.2f}'.format(producto.precio_compra) if producto.precio_compra is not none else 'N/A' }}</td>
+                    <td>{{ 'S/ {:,.2f}'.format(producto.precio_venta) if producto.precio_venta is not none else 'N/A' }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit_product', product_id=producto.id) }}" class="button edit">Editar</a>
+                        <form action="{{ url_for('delete_product', product_id=producto.id) }}" method="post" style="display:inline-block;">
+                            <button type="submit" class="button delete" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?');">Eliminar</button>
+                        </form>
+                        <form action="{{ url_for('increase_stock', product_id=producto.id) }}" method="post" style="display:inline-block;">
+                            <input type="number" name="cantidad" value="1" min="0.01" step="0.01" style="width: 50px;">
+                            <button type="submit" class="button stock-add">+</button>
+                        </form>
+                        <form action="{{ url_for('decrease_stock', product_id=producto.id) }}" method="post" style="display:inline-block;">
+                            <input type="number" name="cantidad" value="1" min="0.01" step="0.01" style="width: 50px;">
+                            <button type="submit" class="button stock-sub">-</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %} {# Si no hay productos #}
+        <p>No hay productos registrados. <a href="{{ url_for('add_product') }}">Añadir uno ahora</a>.</p>
+    {% endif %}
+{% endblock %}

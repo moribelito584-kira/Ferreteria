@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {# Extiende la plantilla base #}
+
+{% block title %}Editar Producto - Inventario Ferretería{% endblock %} {# Define el título de la página #}
+
+{% block content %} {# Define el contenido principal #}
+    <h2>Editar Producto</h2>
+    <form method="post" action="{{ url_for('edit_product', product_id=product_id) }}">
+        <label for="nombre">Nombre del Producto:</label>
+        {# Se usa 'product.nombre' si viene del GET, o 'request.form.nombre' si viene de un POST con error #}
+        <input type="text" id="nombre" name="nombre" value="{{ request.form.nombre if request.form else product.nombre }}" required>
+
+        <label for="codigo">Código del Producto (SKU/Barra):</label>
+        <input type="text" id="codigo" name="codigo" value="{{ request.form.codigo if request.form else product.codigo }}" required>
+
+        <label for="stock">Stock Actual:</label>
+        <input type="number" id="stock" name="stock" value="{{ request.form.stock if request.form else product.stock }}" step="0.01" min="0" required>
+
+        <label for="unidad">Unidad de Medida (ej. ud, mt, kg):</label>
+        <input type="text" id="unidad" name="unidad" value="{{ request.form.unidad if request.form else (product.unidad if product.unidad else '') }}">
+
+        <label for="precio_compra">Precio de Compra (S/):</label>
+        <input type="number" id="precio_compra" name="precio_compra" value="{{ request.form.precio_compra if request.form else (product.precio_compra if product.precio_compra is not none else '') }}" step="0.01" min="0">
+
+        <label for="precio_venta">Precio de Venta (S/):</label>
+        <input type="number" id="precio_venta" name="precio_venta" value="{{ request.form.precio_venta if request.form else (product.precio_venta if product.precio_venta is not none else '') }}" step="0.01" min="0">
+
+        <button type="submit">Guardar Cambios</button>
+        <a href="{{ url_for('index') }}" class="button cancel">Cancelar</a>
+    </form>
+{% endblock %}

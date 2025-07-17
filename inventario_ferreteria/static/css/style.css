@@ -1,0 +1,452 @@
+/* inventario_ferreteria/static/css/style.css */
+
+/* --- Variables CSS para un tema Monocromático --- */
+:root {
+    --primary-bg: #FFFFFF; /* Fondo principal claro */
+    --secondary-bg: #F8F8F8; /* Fondo secundario/alterno muy claro */
+    --header-footer-bg: #E8E8E8; /* Fondo para encabezado/pie de página */
+    --border-light: #EEEEEE; /* Borde muy claro */
+    --border-medium: #DDDDDD; /* Borde estándar */
+    --border-dark: #BBBBBB; /* Borde más oscuro */
+
+    --text-dark: #222222; /* Texto principal oscuro */
+    --text-medium: #555555; /* Texto secundario/etiquetas */
+    --text-light: #888888; /* Texto menos prominente */
+
+    --action-button-bg: #444444; /* Fondo para botones de acción principal (negro grisáceo) */
+    --action-button-hover: #222222; /* Hover para botones de acción */
+    --link-color: #666666; /* Color para enlaces */
+    --link-hover: #333333; /* Hover para enlaces */
+
+    --delete-button-bg: #DC3545; /* Rojo sutil para eliminar (para visibilidad, se puede ajustar) */
+    --delete-button-hover: #C82333;
+
+    --success-bg: #E6FFE6; /* Fondo verde muy claro para éxito */
+    --success-text: #336633; /* Texto verde oscuro para éxito */
+    --success-border: #99CC99;
+
+    --error-bg: #FFE6E6; /* Fondo rojo muy claro para error */
+    --error-text: #CC3333; /* Texto rojo oscuro para error */
+    --error-border: #FF9999;
+
+    --info-bg: #E6F3FF; /* Fondo azul muy claro para información */
+    --info-text: #3366CC; /* Texto azul oscuro para información */
+    --info-border: #99CCFF;
+
+    --warning-bg: #FFFBE6; /* Fondo amarillo muy claro para advertencia */
+    --warning-text: #CC9933; /* Texto amarillo oscuro para advertencia */
+    --warning-border: #FFCC66;
+
+    --shadow-light: rgba(0,0,0,0.05);
+    --shadow-medium: rgba(0,0,0,0.1);
+}
+
+/* --- Estilos Generales y Tipografía --- */
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    color: var(--text-dark); /* Color más oscuro para títulos */
+    text-align: center;
+    margin-bottom: 30px; /* Más espacio */
+    font-weight: 700; /* Más peso */
+    font-size: 2.2em; /* Títulos más grandes */
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 2px var(--shadow-light);
+}
+
+main {
+    flex-grow: 1;
+    padding: 30px; /* Más padding */
+    max-width: 1300px; /* Ancho máximo aumentado */
+    margin: 30px auto; /* Más margen externo */
+    background-color: var(--primary-bg);
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 8px 20px var(--shadow-medium); /* Sombra más pronunciada */
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* --- Navegación (Header) --- */
+header {
+    background-color: var(--header-footer-bg);
+    padding: 20px 0; /* Más padding */
+    box-shadow: 0 2px 10px var(--shadow-light);
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+}
+
+nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 12px 25px; /* Más padding */
+    margin: 0 15px; /* Más margen entre enlaces */
+    font-weight: 600;
+    font-size: 1.05em;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    border: 1px solid transparent; /* Para evitar saltos en hover */
+}
+
+nav a:hover {
+    background-color: var(--border-light);
+    color: var(--link-hover);
+    transform: translateY(-2px);
+}
+
+/* --- Botones --- */
+button,
+.button-link {
+    background-color: var(--action-button-bg);
+    color: white;
+    padding: 12px 22px; /* Más padding */
+    border: none;
+    border-radius: 6px; /* Más redondeado */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 5px 8px 5px 0; /* Más margen entre botones */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+button:hover,
+.button-link:hover {
+    background-color: var(--action-button-hover);
+    transform: translateY(-3px); /* Movimiento más pronunciado */
+    box-shadow: 0 5px 12px var(--shadow-medium);
+}
+
+button:active,
+.button-link:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+.delete-button {
+    background-color: var(--delete-button-bg);
+}
+
+.delete-button:hover {
+    background-color: var(--delete-button-hover);
+}
+
+/* --- Enlaces normales --- */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* --- Formularios --- */
+form {
+    background-color: var(--primary-bg);
+    padding: 40px; /* Más padding */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    max-width: 650px; /* Ancho máximo ajustado */
+    margin: 40px auto; /* Más margen externo */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Más espacio entre elementos del formulario */
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-medium);
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select {
+    padding: 14px; /* Más padding */
+    border: 1px solid var(--border-medium);
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.05em;
+    color: var(--text-dark);
+    background-color: var(--secondary-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+select:focus {
+    border-color: var(--action-button-bg); /* Resaltado al enfocar */
+    box-shadow: 0 0 0 4px rgba(68, 68, 68, 0.15); /* Sutil brillo */
+    outline: none;
+}
+
+input[type="number"].small-input {
+    width: 70px; /* Más ancho */
+    padding: 8px; /* Más padding */
+    text-align: center;
+    margin-bottom: 0;
+    background-color: var(--primary-bg); /* Fondo blanco */
+    box-shadow: none;
+    border-radius: 4px;
+}
+
+/* --- Tablas --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 30px; /* Más margen superior */
+    background-color: var(--primary-bg);
+    box-shadow: 0 8px 20px var(--shadow-light);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 0.95em;
+}
+
+th, td {
+    border-bottom: 1px solid var(--border-light);
+    padding: 15px 20px; /* Más padding en celdas */
+    text-align: left;
+    vertical-align: middle; /* Alineación vertical */
+}
+
+th {
+    background-color: var(--header-footer-bg);
+    font-weight: 700; /* Más peso */
+    color: var(--text-medium);
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.8px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+th:first-child { border-top-left-radius: 12px; }
+th:last-child { border-top-right-radius: 12px; }
+
+tbody tr:nth-child(even) {
+    background-color: var(--secondary-bg);
+}
+
+tbody tr:hover {
+    background-color: var(--border-light); /* Resaltado sutil al pasar el ratón */
+    transition: background-color 0.3s ease;
+}
+
+td img {
+    width: 70px; /* Imágenes un poco más grandes */
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px; /* Bordes más suaves */
+    border: 1px solid var(--border-medium);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 15px; /* Espacio a la derecha de la imagen */
+}
+
+td img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+/* Estilos para las acciones en la tabla (MUY IMPORTANTE PARA EL ESPACIADO) */
+td form, td .button-link {
+    margin: 5px 0; /* Espaciado vertical entre botones/formularios */
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    display: block; /* Cada acción en su propia línea para claridad */
+    width: fit-content; /* Ajusta el ancho al contenido */
+}
+
+td .stock-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre input y botones de stock */
+    margin-bottom: 10px; /* Espacio debajo de los controles de stock */
+}
+
+td .stock-controls button {
+    padding: 6px 10px; /* Botones de stock más pequeños */
+    font-size: 0.9em;
+    margin: 0; /* Eliminar margen extra de botón */
+}
+
+/* --- Mensajes Flash --- */
+.flashes {
+    list-style-type: none;
+    padding: 18px 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    max-width: 650px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    animation: fadeInSlideDown 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+    font-weight: 500;
+    font-size: 1.05em;
+}
+
+.flashes li {
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start; /* Alinea ícono con el inicio del texto */
+    gap: 12px; /* Espacio entre ícono y texto */
+}
+
+.flashes li::before {
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1; /* Asegura que el ícono no afecte la altura de la línea */
+    flex-shrink: 0; /* Evita que el ícono se encoja */
+}
+
+.success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+}
+.success::before { content: "✓"; color: var(--success-text); }
+
+.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid var(--error-border);
+}
+.error::before { content: "✗"; color: var(--error-text); }
+
+.info {
+    background-color: var(--info-bg);
+    color: var(--info-text);
+    border: 1px solid var(--info-border);
+}
+.info::before { content: "i"; color: var(--info-text); }
+
+.warning {
+    background-color: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid var(--warning-border);
+}
+.warning::before { content: "⚠"; color: var(--warning-text); }
+
+/* --- Footer --- */
+footer {
+    margin-top: 50px; /* Más margen superior */
+    padding: 25px; /* Más padding */
+    background-color: var(--header-footer-bg);
+    color: var(--text-light);
+    text-align: center;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 10px var(--shadow-light);
+    border-top: 1px solid var(--border-light);
+}
+
+/* --- Animaciones Keyframes --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInSlideDown {
+    from { opacity: 0; transform: translateY(-30px); } /* Más movimiento */
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Media Queries para Responsividad (Esencial para móviles) --- */
+@media (max-width: 768px) {
+    main {
+        margin: 15px;
+        padding: 20px;
+    }
+    h1, h2 {
+        font-size: 1.8em;
+    }
+    nav a {
+        display: block;
+        margin: 8px 0;
+        padding: 10px 15px;
+    }
+    form {
+        padding: 25px;
+        margin: 25px auto;
+        gap: 15px;
+    }
+
+    /* Columnas de tabla apiladas para mejor visualización en móviles */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr {
+        margin-bottom: 20px;
+        border: 1px solid var(--border-medium);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px var(--shadow-light);
+    }
+    td {
+        border: none;
+        border-bottom: 1px solid var(--border-light);
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta */
+        text-align: right;
+        font-size: 1em;
+    }
+    td:before {
+        position: absolute;
+        top: 0;
+        left: 10px; /* Espacio desde el borde */
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 700; /* Más peso para la etiqueta */
+        color: var(--text-medium);
+        content: attr(data-label); /* Usa el atributo data-label en el HTML */
+    }
+    td:last-child {
+        border-bottom: none;
+        padding-bottom: 15px;
+    }
+
+    /* Ajustes específicos para acciones en móvil */
+    td .stock-controls {
+        flex-wrap: wrap; /* Permite que los botones bajen si no hay espacio */
+        justify-content: flex-end; /* Alinea a la derecha */
+    }
+    td .stock-controls input {
+        width: calc(100% - 10px); /* Ajusta ancho */
+    }
+    td form, td .button-link {
+        width: 100%;
+        text-align: right; /* Alinea a la derecha */
+        margin-right: 0;
+    }
+    td .button-link, td button {
+        width: 100%; /* Botones de editar/eliminar a lo largo */
+        justify-content: center; /* Centra texto en botones */
+    }
+}
